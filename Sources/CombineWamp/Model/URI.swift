@@ -14,12 +14,12 @@ public struct URI: Equatable, RawRepresentable, CustomStringConvertible, Lossles
     /// More information about wildcards here: https://wamp-proto.org/_static/gen/wamp_latest.html#relaxed-loose-uris
     public init?(rawValue: String) {
         guard !rawValue.starts(with: "wamp.") else { return nil }
-        let pattern = #"^([0-9a-z_]+\.)*([0-9a-z_]+)$"#
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
-        let range = NSRange(rawValue.startIndex..<rawValue.endIndex, in: rawValue)
-        let matches = regex.matches(in: rawValue, options: .anchored, range: range)
-        guard matches.count == 1 else { return nil }
-        guard matches[0].range == range else { return nil }
+//        let pattern = #"^([0-9a-z_]+\.)*([0-9a-z_]+)$"#
+//        guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
+//        let range = NSRange(rawValue.startIndex..<rawValue.endIndex, in: rawValue)
+//        let matches = regex.matches(in: rawValue, options: .anchored, range: range)
+//        guard matches.count == 1 else { return nil }
+//        guard matches[0].range == range else { return nil }
         self.rawValue = rawValue
         self.isWildcard = false
     }
@@ -29,12 +29,12 @@ public struct URI: Equatable, RawRepresentable, CustomStringConvertible, Lossles
     /// More information about wildcards here: https://wamp-proto.org/_static/gen/wamp_latest.html#relaxed-loose-uris
     public init?(wildcard: String) {
         guard !wildcard.starts(with: "wamp.") else { return nil }
-        let pattern = #"^(([0-9a-z_]+\.)|\.)*([0-9a-z_]+)?$"#
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
-        let range = NSRange(wildcard.startIndex..<wildcard.endIndex, in: wildcard)
-        let matches = regex.matches(in: wildcard, options: .anchored, range: range)
-        guard matches.count == 1 else { return nil }
-        guard matches[0].range == range else { return nil }
+//        let pattern = #"^(([0-9a-z_]+\.)|\.)*([0-9a-z_]+)?$"#
+//        guard let regex = try? NSRegularExpression(pattern: pattern) else { return nil }
+//        let range = NSRange(wildcard.startIndex..<wildcard.endIndex, in: wildcard)
+//        let matches = regex.matches(in: wildcard, options: .anchored, range: range)
+//        guard matches.count == 1 else { return nil }
+//        guard matches[0].range == range else { return nil }
         self.rawValue = wildcard
         self.isWildcard = wildcard.contains("..") || wildcard.hasPrefix(".") || wildcard.hasSuffix(".")
     }
